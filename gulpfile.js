@@ -17,7 +17,7 @@ gulp.task("sass", function() {
 gulp.task("watches", function() {
   gulp.watch("app/sass/**/*.sass", gulp.parallel("sass"));
 });
-gulp.task("Brawser", () => {
+gulp.task("brawser", function() {
   browserSync({
     server: {
       baseDir: "app"
