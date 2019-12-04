@@ -5,7 +5,11 @@ const concat = require("gulp-concat");
 const uglify = require("gulp-uglifyjs");
 const cssnano = require("gulp-cssnano");
 const rename = require("gulp-rename");
+const del = require("del");
 
+gulp.task("clean", () => {
+  return del.sync("dist");
+});
 gulp.task("js", () => {
   return gulp
     .src(["app/js/common.js", "app/js/**/*.js"])
@@ -65,10 +69,3 @@ gulp.task(
   "default",
   gulp.parallel("css-libs", "sass", "scripts", "browser-sync", "watch")
 );
-gulp.task("build", () => {
-  var buildCss = gulp
-    .src(["app/css/main.css", "app/css/libs.min.css"])
-    .pipe(gulp.dest("dist/css"));
-  var buildFonts = gulp.src("app/fonts/**/*").pipe(gulp.dest("dist/fonts"));
-  var buildJs = gulp.src("app/js/**/*").pipe(gulp.dest("dist/js"));
-});
